@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--LOAD PRE-REQUISITES FOR GOOGLE SIGN IN -->
+   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js">
+  </script>
+
+<!-- END PRE-REQUISITES FOR GOOGLE SIGN IN -->
+</head>
+
+<body>
+<div id="result">
+</div>
+
+<script>
+function signOutCallback() {
+    $.ajax({
+      type: 'GET',
+      url: '/gdisconnect',
+      data: '',
+      success: function(result) {
+        // Handle or verify the server response if necessary.
+        if (result) {
+          console.log(result);
+        //   $('#result').html('Login Successful!</br>'+ result + '</br>Redirecting...')
+         $('#result').text(result + '... logging out in 4 seconds...');
+         setTimeout(function() {
+          window.location.href = "/restaurant";
+         }, 4000);
+
+          } else {
+            console.log(result);
+              // console.log('There was an error: ' + authResult['error']);
+          }
+      }
+
+  });
+}
+signOutCallback();
+</script>
+
+
+
+<!--END GOOGLE PLUS SIGN IN -->
+
+  </body>
+
+  </html>
