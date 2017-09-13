@@ -11,16 +11,17 @@ import httplib2
 import json
 from flask import make_response
 import requests
+from oauth2client.client import flow_from_clientsecrets
 
 app = Flask(__name__)
 
-CLIENT_ID = json.loads(
-    open('client_secrets.json', 'r').read())['web']['client_id']
+flow = flow_from_clientsecrets('client_secrets.json')
+CLIENT_ID = flow
 APPLICATION_NAME = "Restaurant Menu Application"
 
 
 # Connect to Database and create database session
-engine = create_engine('sqlite:///restaurantmenu.db')
+engine = create_engine('postgresql://catalog:catalog@localhost/catalog')
 Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind=engine)
