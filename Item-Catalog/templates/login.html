@@ -60,6 +60,10 @@ function signInCallback(authResult) {
               } else {
                   $('#result').html('Failed to make a server-side call. Check your configuration and console.');
                  }
+      },
+      error: function (xhr, ajaxOptions, thrownError) {
+        console.log(xhr.status);
+        console.log(thrownError);
       }
     });
   }
